@@ -1,6 +1,6 @@
-
-type LayoutType = React.ComponentType | null;
-type ComponentType = React.ComponentType;
+import React, {LazyExoticComponent} from "react";
+type LayoutType = LazyExoticComponent<React.ComponentType<any>> | React.ComponentType<any> | null ;
+type ComponentType = LazyExoticComponent<React.ComponentType<any>> | React.ComponentType<any>;
 
 export interface publicRoutesType {
     path: string;
