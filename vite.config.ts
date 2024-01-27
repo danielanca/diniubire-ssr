@@ -11,6 +11,7 @@ const test = {
   watch: false,
 } as UserConfig["test"];
 
+// @import "./src/client/styles/mixins.scss"
 // https://vitejs.dev/config/
 const isProd = process.env.NODE_ENV === "production";
 export default defineConfig({
@@ -20,4 +21,11 @@ export default defineConfig({
     minify: false,
   },
   test,
+  css:{
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/client/styles/mixins.scss";\n`
+      }
+    }
+  }
 });
