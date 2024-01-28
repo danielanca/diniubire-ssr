@@ -23,7 +23,7 @@ const Footer = () => {
           )}
 
           <div className={"row " + styles.largeFooter}>
-            <div className="col-md-4">
+            <div className="">
               <div className="row">
                 <div className={"col " + styles.footItem}>
                   <h3 className={styles.footerTittleCenter}>{"LINK-URI UTILE"}</h3>
@@ -35,7 +35,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4">
+            <div className="">
               <div className="row">
                 <div className={"col " + styles.footItem}>
                   <h3 className={styles.footerTittleCenter}>{"DETALII COMERCIALE"}</h3>
@@ -47,7 +47,7 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 ">
+            <div className=" ">
               <div className="row">
                 <div className={"col " + styles.footItem}>
                   <h3 className={styles.footerTittleCenter}>{"MAGAZINUL NOSTRU"}</h3>

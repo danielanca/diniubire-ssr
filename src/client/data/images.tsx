@@ -1,7 +1,6 @@
 // Importing images
 import sapunCarbune from './../media/assets/pics/prezentareCarbune/carbune.png';
 import deliveryCar from './../media/assets/pics/prezentareCarbune/delivery.png';
-import logo from './../media/assets/oasis_header.svg';
 import star from './../media/assets/pics/prezentareCarbune/star_review.png';
 import cartLogo from './../media/assets/cart.png';
 import arrowRight from './../media/assets/pics/prezentareCarbune/next.png';
@@ -29,7 +28,6 @@ import dermatita from './../media/assets/pics/prezentareCarbune/blogs/dermatita.
 const images = {
   sapunCarbune,
   deliveryCar,
-  logo,
   star,
   cartLogo,
   arrowRight,

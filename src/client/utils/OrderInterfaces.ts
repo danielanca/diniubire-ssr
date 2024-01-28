@@ -43,7 +43,7 @@ export interface ProductModel {
   title: string;
 }
 export interface ProdItemProps {
-  productObject: ProductListType;
+  productObject: any;
   size?: string;
 }
 export interface ProductListType {
