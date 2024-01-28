@@ -76,7 +76,7 @@
   }
 }
 .rowContainer {
-  @extend .row !optional;
+  @include row;
   @include media("<tablet") {
     flex-direction: column;
     display: flex;
@@ -84,8 +84,7 @@
   }
 }
 .colContainer {
-  @extend .col-6 !optional;
-
+  @include col-size(6);
   @include media("<tablet") {
     width: 90%;
   }

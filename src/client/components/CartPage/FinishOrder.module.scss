@@ -66,7 +66,7 @@
   }
 }
 .finishOrderContainer {
-  @extend .row !optional;
+  @include row;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -81,8 +81,8 @@
   }
 }
 .leftContainer {
-  @extend .col-sm-12 !optional;
-  @extend .col-lg-6 !optional;
+  @include col-size(12,"sm");
+  @include col-size(6,"lg");
   padding: 27px 10px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   max-width: 559px;
@@ -100,8 +100,9 @@
   }
 }
 .rightContainer {
-  @extend .col-lg-6 !optional;
-  @extend .col-sm-12 !optional;
+  @include col-size(6,"lg");
+  @include col-size(12,"sm");
+  
   width: 422px;
   height: auto;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -243,7 +244,7 @@ label {
   padding: 20px;
 }
 .paymentShipContainer {
-  @extend .col-12 !optional;
+  @include col-size(12);
   display: flex;
   justify-content: center;
   border: 1px gray solid;
@@ -339,7 +340,7 @@ label {
   }
 }
 .warningOrderWrapper {
-  @extend .col-12 !optional;
+  @include col-size(12);
 
   @include media(">=tablet", "<desktop") {
     width: 60%;

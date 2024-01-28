@@ -74,7 +74,7 @@
   text-align: center;
 }
 .actualCheckout {
-  @extend .row !optional;
+  @include row;
   width: 100%;
   height: auto;
   border: 1px solid gray;
@@ -177,16 +177,16 @@
   font-family: "Roboto Medium";
 }
 .bottomLeft {
-  @extend .col-sm-6 !optional;
+  @include col-size(6,"sm");
 }
 .bottomRight {
-  @extend .col-sm-6 !optional;
+  @include col-size(6,"sm");
   padding: 20px;
 }
 
 .innerAlign {
   display: flex;
-  @extend .col-sm-4 !optional;
+  @include col-size(4,"sm");
   align-items: center;
   justify-content: flex-end;
   @include media("<tablet") {
@@ -195,7 +195,7 @@
 }
 .innerPrice {
   display: flex;
-  @extend .col-sm-8 !optional;
+  @include col-size(8,"sm");
   justify-content: flex-start;
   align-items: center;
   @include media("<tablet") {

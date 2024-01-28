@@ -1,8 +1,7 @@
 
 
 .bigBlanaBanner {
-  @extend .container-fluid !optional;
-
+  @include container-fluid;
   display: flex;
   flex-direction: row;
   height: 45px;
@@ -50,7 +49,7 @@
   }
 }
 .emailTop {
-  @extend .col-md-3 !optional;
+  @include col-size(3,"md");
   font-family: "Roboto", sans-serif;
   color: #eee6d3;
   font-weight: 900;
@@ -60,7 +59,7 @@
   }
 }
 .socialsTop {
-  @extend .col-md-3 !optional;
+  @include col-size(3,"md");
   font-family: "Roboto", sans-serif;
   color: #eee6d3;
   display: flex;

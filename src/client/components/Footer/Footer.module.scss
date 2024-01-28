@@ -1,6 +1,6 @@
 
 .footerArea {
-  @extend .container-fluid !optional;
+  @include container-fluid;
 
   display: flex;
   flex-direction: row;
@@ -57,7 +57,7 @@
   margin-right: 0 !important;
 }
 .showPop {
-  @extend .container !optional;
+  @include container-fluid;
 }
 .hide {
   @include media("<tablet") {
