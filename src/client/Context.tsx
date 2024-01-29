@@ -19,3 +19,20 @@ export const ContextWrapper = ({ children }: { children: any }) => {
 };
 
 export const useAppContext = () => useContext(context);
+
+
+
+
+interface ProductsContextType {
+  ssProducts: any[]; // Replace 'any' with a more specific type if possible
+  setSSproducts: React.Dispatch<React.SetStateAction<any[]>>; // Again, replace 'any' with a specific type
+  cartCount: number;
+  setCartCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const ProductsContext = React.createContext<ProductsContextType>({
+  ssProducts: [],
+  setSSproducts: () => {},
+  cartCount: 0,
+  setCartCount: () => {},
+});

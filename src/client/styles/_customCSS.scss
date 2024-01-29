@@ -7,6 +7,12 @@
     font-size: 14px;
   }
 }
+.justify-content-center{
+  justify-content: center;
+}
+.d-flex{
+  display: flex;
+}
 .robotoMedium {
   font-family: "Roboto Medium" !important;
 }
@@ -16,7 +22,8 @@
 .middleSubtext {
   text-align: center;
   font-size: 17px;
-  font-family: "Roboto Medium";
+  font-family: 'Roboto Medium';
+  font-weight: 500;
 }
 .robotoLight {
   font-family: "Roboto Light";
@@ -35,7 +42,6 @@
   p {
     line-height: 18px;
     text-indent: 50px;
-    font-family: "Roboto Light";
     font-weight: 600;
   }
   strong,
@@ -160,6 +166,7 @@
     text-indent: 0;
     text-align: center;
     margin: 0;
+    font-family: 'Roboto Medium';
     @include media("<tablet") {
       font-size: 13px;
     }

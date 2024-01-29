@@ -1,9 +1,8 @@
 import React from "react";
 import { NavHashLink } from "react-router-hash-link";
-import { blogs } from "../../data/blogStrings";
+import { blogs } from '../../../data/blogStrings';
 import styles from "./../../components/ConstantComponents/BlogItem.module.scss";
-import strings from "../../data/strings.json";
-
+import strings from '../../../data/strings.json';
 interface BlogProps {
   data: string;
 }

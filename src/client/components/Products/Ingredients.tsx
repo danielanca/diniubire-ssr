@@ -15,8 +15,8 @@ interface Proper {
 const Ingredients = ({ contentIngredients }: Proper) => {
   return (
     <div className={styles.ingredientsContainer}>
-      {Object.values(contentIngredients).map((item) => (
-        <div className={styles.productList}>
+      {Object.values(contentIngredients).map((item,index) => (
+        <div key={index} className={styles.productList}>
           <div className={styles.imageWrap}>
             <img className={styles.iconImage} src={item.image} />
           </div>

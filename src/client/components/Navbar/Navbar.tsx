@@ -5,8 +5,9 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { getCartItems } from "../CartPage/CartPage";
 import TopBanner from "./TopBanner";
 import MenuMobileSide from "../../components/MenuMobile/MenuMobileSide";
-
+import {ProductsContext} from './../../Context';
 import styles from "./Navbar.module.scss";
+import { useContext } from "react";
 import images from '../../data/images';
 import strings from "../../data/strings.json";
 
@@ -19,14 +20,18 @@ const NavBar = ({ clearNotif }: NavProps) => {
   let { navMenu: navItems, cart } = strings;
   const { pathname } = useLocation();
   const [totalItems, setTotalItems] = useState<number>(getCartItems());
-
+  const { cartCount, setCartCount } = useContext(ProductsContext);
   useEffect(() => {
     setTotalItems(getCartItems());
-  }, [clearNotif]);
+  }, [clearNotif,cartCount]);
 
   const sendAnalyticsIdea = () => {
     // ReactGA.event("User pressed on gallery");
   };
+
+  useEffect(()=>{
+      console.log('Navbar telling we have an update', cartCount);
+  }, [cartCount]);
 
   return (
     <>

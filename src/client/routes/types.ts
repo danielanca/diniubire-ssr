@@ -7,4 +7,5 @@ export interface publicRoutesType {
     layout: LayoutType;
     component: ComponentType;
     props?: Record<string, any>;
+    navProps?: Record<number,any>;
 }

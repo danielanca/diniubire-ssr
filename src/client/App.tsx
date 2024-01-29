@@ -7,7 +7,9 @@ import useProductData from "./components/hooks/hooks/useProductData";
 import routes from "./routes/routes";
 import CookieConsent from "./components/CookieConsent/CookieConsent";
 import { getCookie } from "./utils/functions";
-import ProductView from "./components/mini/Product/ProductView";
+import {ProductsContext} from './Context';
+
+
 
 export const App = () => {
   const getCookieConsent = () => typeof document !== 'undefined' && getCookie("cookieConsentBrasov") !== "userAccepted";
@@ -15,25 +17,27 @@ export const App = () => {
   
 
   const [ssProducts, setSSproducts] = useProductData(); // This will manage product data
-  const [letsCartHandler, CartHandler] = useState(0);
+  const [cartCount, setCartCount] = useState(0); // Cart state
 
 
   return (
     <ContextWrapper>
        {getCookieConsent() && <CookieConsent />}
+       <ProductsContext.Provider value={{ ssProducts, setSSproducts, cartCount, setCartCount }}>
       <Suspense fallback={<div>LOADING URS...</div>}> 
         <Routes>
         {routes.map((route, index) => {
             const Layout = route.layout || React.Fragment;
             const Component = route.component;
-            const additionalProps = route.component === ProductView ? { notifyMe: CartHandler } : {};
+            // const additionalProps = route.component === ProductView ? { notifyMe: CartHandler } : {};
+            // const navPropsAdditional = Layout === PublicLayout ? { clearNotif: letsCartHandler} : {};
             return (
               <Route
                 key={index}
                 path={route.path}
                 element={
-                  <Layout>
-                    <Component {...route.props} {...additionalProps} />
+                  <Layout >
+                    <Component {...route.props} />
                   </Layout>
                 } 
               />
@@ -41,6 +45,7 @@ export const App = () => {
           })}
         </Routes>
       </Suspense>
+      </ProductsContext.Provider>
     </ContextWrapper>
   );
 };

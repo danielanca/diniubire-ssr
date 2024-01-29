@@ -13,7 +13,7 @@ const StarDisplayer = ({ starScore }: StarsProps) => {
 
   return (
     <div className={styles.starVisualizer}>
-      {Array.from({ length: starScore }, (item) => {
+      {Array.from({ length: Number(starScore) }, (item) => {
         return <img alt="star icon" className={styles.starIcon} src={images.star} />;
       })}
     </div>

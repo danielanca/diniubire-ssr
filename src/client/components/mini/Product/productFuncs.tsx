@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProductView.module.scss";
-import images from "./../../data/images";
+import images from '../../../data/images';
 
 export const displayStars = (value: number, width: string) => {
   return (

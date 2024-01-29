@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import ProductPreview from "./ProductPreview";
@@ -11,14 +11,15 @@ import { NotExistingProduct } from "../../../data/strings.json";
 import images from '../../../data/images';
 import { sendTriggerEmail } from '../../../services/triggers';
 import styles from "./ProductView.module.scss";
-
+import {ProductsContext} from './../../../Context';
 
 const ProductView = ({ notifyMe }: CartProps) => {
   let params = useParams();
   let ID = params.productID !== undefined ? params.productID : "";
   const ref = useRef(null);
   const [productListUpdated, setProducts] = useState<ProductListType>();
-
+  const { cartCount, setCartCount } = useContext(ProductsContext);
+  console.log('Params are:', params);
   useEffect(() => {
     if (productListUpdated == null) {
       getProductWithID(ID).then((finalData) => {
@@ -42,7 +43,8 @@ const ProductView = ({ notifyMe }: CartProps) => {
     if (expectedData === null) {
       storedCart.push({ id: ID, itemNumber: "1" });
       localStorage.setItem(CartInfoItemCookie, JSON.stringify(storedCart));
-      notifyMe(Math.floor(Math.random() * 100)); // not how it should be
+      setCartCount(Math.random() * 100);
+      // notifyMe(Math.floor(Math.random() * 100)); // not how it should be
       return;
     }
     let itemFound = false;
@@ -58,7 +60,13 @@ const ProductView = ({ notifyMe }: CartProps) => {
       storedCart.push({ id: ID, itemNumber: "1" });
     }
     localStorage.setItem(CartInfoItemCookie, JSON.stringify(storedCart));
-    notifyMe(Math.floor(Math.random() * 100));
+    setCartCount(Math.random() * 100);
+    // if(typeof notifyMe === 'function'){
+    //   notifyMe(Math.floor(Math.random() * 100));
+    // }else{
+    //   console.log('NotifyMe function not working');
+    // }
+   
   };
 
   return (

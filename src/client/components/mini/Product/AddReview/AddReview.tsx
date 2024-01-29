@@ -44,7 +44,7 @@ const AddReview = ({ productID }: PassingReview) => {
       [name]: value
     }));
   };
-  const handleUploadChange = (e) => {
+  const handleUploadChange = (e:any) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
