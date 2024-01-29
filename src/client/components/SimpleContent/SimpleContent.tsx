@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 import HelmetHead from '../../components/mini/HelmetHead/HelmetHead';
 import { staticContent } from "../../data/contentLegal";
 
-import "./../data/customCSS.scss";
+import '../../data/customCSS.scss';
 
 interface SimpleProps {
   type: string;

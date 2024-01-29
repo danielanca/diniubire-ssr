@@ -5,5 +5,6 @@ type ComponentType = LazyExoticComponent<React.ComponentType<any>> | React.Compo
 export interface publicRoutesType {
     path: string;
     layout: LayoutType;
-    component: ComponentType; // component is optional because it's missing in one of your routes
+    component: ComponentType;
+    props?: Record<string, any>;
 }

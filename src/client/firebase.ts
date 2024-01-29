@@ -1,8 +1,10 @@
 import { initializeApp } from "firebase/app";
 
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported as analyticsIsSupported } from "firebase/analytics";
 import "firebase/storage";
 import { getStorage } from "firebase/storage";
+
+let analytics: any;
 
 const firebaseConfig = {
   apiKey: "AIzaSyDxmbqzBXpIUoYCevqizlncQ80CH9b8--s",
@@ -15,7 +17,18 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+
+
+if (typeof window !== 'undefined') {
+  analyticsIsSupported().then(isSupported => {
+    if (isSupported) {
+      analytics = getAnalytics(app);
+    }
+  });
+}
+
+
 const storage = getStorage(app);
 
 export { storage };

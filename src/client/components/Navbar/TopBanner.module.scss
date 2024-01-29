@@ -44,7 +44,6 @@
   font-family: "Luckiest Guy";
 
   @include media("<tablet") {
-    inline-size: 280px;
     overflow-wrap: break-word;
   }
 }

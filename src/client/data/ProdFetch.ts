@@ -1,8 +1,14 @@
 import { doc, getFirestore, getDoc } from "firebase/firestore";
-
+import { initializeApp, getApps } from "firebase/app";
 import app from "./../firebase";
 
 const db = getFirestore(app);
+
+if (!getApps().length) {
+  initializeApp({ /* your config */ });
+}
+
+
 
 export const getData = async () => {
   const documentRef = doc(db, "products", "activeProds");

@@ -4,7 +4,7 @@ import { HashLink, HashLink as Link, NavHashLink } from "react-router-hash-link"
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { getCartItems } from "../CartPage/CartPage";
 import TopBanner from "./TopBanner";
-// import MenuMobileSide from "./MenuMobileSide";
+import MenuMobileSide from "../../components/MenuMobile/MenuMobileSide";
 
 import styles from "./Navbar.module.scss";
 import images from '../../data/images';
@@ -56,7 +56,7 @@ const NavBar = ({ clearNotif }: NavProps) => {
                 </HashLink>
               </div>
 
-              {/* <MenuMobileSide /> */}
+              <MenuMobileSide />
               <ul className={styles.ulMenuStart}>
                 <li className={styles.liItem}>
                   <NavHashLink className={styles.HashLinkStyle} to={navItems.intrebariFrecvente.link}>
