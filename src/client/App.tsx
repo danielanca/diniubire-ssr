@@ -1,4 +1,4 @@
-import React,{ Suspense, useState } from "react";
+import React,{ useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ContextWrapper } from "./Context";
 import "@fontsource/luckiest-guy";
@@ -24,13 +24,11 @@ export const App = () => {
     <ContextWrapper>
        {getCookieConsent() && <CookieConsent />}
        <ProductsContext.Provider value={{ ssProducts, setSSproducts, cartCount, setCartCount }}>
-      <Suspense fallback={<div>LOADING URS...</div>}> 
         <Routes>
         {routes.map((route, index) => {
             const Layout = route.layout || React.Fragment;
             const Component = route.component;
-            // const additionalProps = route.component === ProductView ? { notifyMe: CartHandler } : {};
-            // const navPropsAdditional = Layout === PublicLayout ? { clearNotif: letsCartHandler} : {};
+           
             return (
               <Route
                 key={index}
@@ -44,7 +42,6 @@ export const App = () => {
             );
           })}
         </Routes>
-      </Suspense>
       </ProductsContext.Provider>
     </ContextWrapper>
   );

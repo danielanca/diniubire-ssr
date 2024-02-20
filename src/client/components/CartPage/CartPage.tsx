@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavHashLink } from "react-router-hash-link";
 import { productConstants } from "../../data/componentStrings";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import { CartInfoItemCookie, ProductsFromSessionStorage } from "../../data/constants";
 import ItemCartList from "./ItemCartList";
 import { ProductSessionProps, ProductCookiesProps, CartProps } from "./typeProps";

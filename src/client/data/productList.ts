@@ -1,5 +1,5 @@
 import { collection, doc, getFirestore, getDoc, getDocs } from "firebase/firestore";
-import app from "./../firebase";
+import app from "../firebase";
 // import { devConsole } from "./../functions/utilsFunc";
 let productList :any[]= [];
 
@@ -40,14 +40,19 @@ interface productType {
   title: string;
 }
 export const getOrderByID = async (invoiceID: number) => {
-  const productData = doc(db, "orders", invoiceID.toString());
-  const snap = await getDoc(productData);
-  let productsAreHere;
-  if (snap.exists()) {
-    productsAreHere = snap.data();
+  
+  const LoadData = async() =>{
+    const fireStoreModule = await import('firebase/firestore');
+    const productData = fireStoreModule.doc(db, "orders", invoiceID.toString());
+    const snap = await fireStoreModule.getDoc(productData);
+    let productsAreHere;
+    if (snap.exists()) {
+      productsAreHere = snap.data();
+    }
+    return productsAreHere;
   }
+  return LoadData();
 
-  return productsAreHere;
 };
 export const getAllOrders = async () => {
   const snapShot = await getDocs(collection(db, "orders"));

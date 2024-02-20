@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import Relaxbar from "../mini/Footers/Relaxbar";
 import { footerData } from "./../../data/componentStrings";
 import NewsletterBanner from "../mini/HeadLiners/HeadLiners/NewsletterBanner";

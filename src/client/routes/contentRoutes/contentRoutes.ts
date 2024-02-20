@@ -1,8 +1,7 @@
 
-import { lazy } from "react";
-
-const SimpleContent = lazy(() => import('../../components/SimpleContent/SimpleContent'));
-const PublicLayout = lazy(() => import('../../layouts/public/PublicLayout'));
+import loadable from "@loadable/component";
+const SimpleContent = loadable(() => import('../../components/SimpleContent/SimpleContent'), {ssr:true});
+const PublicLayout = loadable(() => import('../../layouts/public/PublicLayout'), {ssr:true});
 
 import { publicRoutesType } from '../types';
 

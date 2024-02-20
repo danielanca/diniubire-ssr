@@ -1,7 +1,8 @@
-import React from 'react';
+import loadable from '@loadable/component';
 
-import Footer from '../../components/Footer/Footer';
-import Navbar from '../../components/Navbar/Navbar';
+const Footer = loadable(() => import('../../components/Footer/Footer'), {ssr:true});
+const Navbar = loadable(() => import("../../components/Navbar/Navbar"), {ssr:true});
+
 
 interface Lay{
      children: any | null;

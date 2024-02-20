@@ -1,5 +1,5 @@
 import ProductItem from "../Products/ProductItem";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import React, { useEffect, useState } from "react";
 import styles from "./SuggestionArea.module.scss";
 import { ProductsFromSessionStorage } from "./../../data/constants";

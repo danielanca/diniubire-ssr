@@ -12,7 +12,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  .text{
+    font-family: 'Roboto Medium';
+    font-size: 24px;
+  }
   a {
     width: 224px;
     outline: 2px solid black;
@@ -21,6 +24,10 @@
 .miniText {
   font-weight: bold;
   text-align: center;
+  font-family: 'Roboto Medium';
+  strong{
+    font-family: 'Roboto Medium';
+  }
 }
 .buttonToHome {
   background-color: #ff6161;
@@ -28,6 +35,7 @@
   padding: 6% 15%;
   white-space: nowrap;
   border: none;
+  width: 100%;
 }
 .boldText {
   font-weight: bolder;
@@ -37,6 +45,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
 }
 
 .titleConfirm {

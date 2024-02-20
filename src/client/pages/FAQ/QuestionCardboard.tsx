@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 
 import styles from "./QuestionCardboard.module.scss";
 // import images from "../../data/images";

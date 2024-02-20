@@ -4,7 +4,6 @@ import Comments from "./Comments";
 import ProductPreview from "./ProductPreview";
 import Loader from './Loader/Loader';
 import SuggestionArea from "../../SuggestedProducts/SuggestionArea";
-import { getProductWithID } from '../../../data/productList';
 import { CartInfoItemCookie } from "../../../data/constants";
 import { ProductListType, CartProps } from "../../../utils/OrderInterfaces";
 import { NotExistingProduct } from "../../../data/strings.json";
@@ -22,18 +21,23 @@ const ProductView = ({ notifyMe }: CartProps) => {
   console.log('Params are:', params);
   useEffect(() => {
     if (productListUpdated == null) {
-      getProductWithID(ID).then((finalData) => {
-        setProducts(finalData);
-
-        fetch("https://ipinfo.io/json?token=f8c1bf7eef0517")
-          .then((response) => response.json())
-          .then((jsonResponse) =>
-            sendTriggerEmail({
-              typeEvent: `Visit-${jsonResponse.ip} - ${jsonResponse.city}`,
-              url: window.location.pathname
-            })
-          );
-      });
+      const getProdData = async () => {
+        const {getProductWithID} = await import('../../../data/productList');
+        getProductWithID(ID).then((finalData) => {
+          setProducts(finalData);
+  
+          fetch("https://ipinfo.io/json?token=f8c1bf7eef0517")
+            .then((response) => response.json())
+            .then((jsonResponse) =>
+              sendTriggerEmail({
+                typeEvent: `Visit-${jsonResponse.ip} - ${jsonResponse.city}`,
+                url: window.location.pathname
+              })
+            );
+        });
+      }
+      getProdData();
+     
     }
   });
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HashLink as Link, NavHashLink } from "react-router-hash-link";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import styles from './MenuMobileSide.module.scss';
 import images from '../../data/images';
 import strings from '../../data/strings.json';

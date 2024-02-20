@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import QuestionCardboard from "./QuestionCardboard";
 import { FAQ } from "./../../data/strings.json";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 
 import styles from "./FAQBlock.module.scss";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import ReviewCard from "./../ReviewCard/ReviewCard";
 
 import AddReview from "./../AddReview/AddReview";

@@ -6,8 +6,7 @@
   flex-direction: row;
 }
 .fluidHandler {
-  max-width: 2000px;
-  width: auto;
+  width: 100%;
   display: table;
   margin: auto;
   @include media("<=1800px") {

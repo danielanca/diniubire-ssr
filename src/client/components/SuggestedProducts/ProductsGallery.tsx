@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ProductsGallery.module.scss";
 import ProductItem from "../Products/ProductItem";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 
 interface ProductsGalleryProps {
   productsToShow: {};

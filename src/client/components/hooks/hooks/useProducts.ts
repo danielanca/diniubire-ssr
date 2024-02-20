@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { ProductsFromSessionStorage } from '../../../data/constants';
-import {getData} from '../../../data/ProdFetch'
 
 export const useProducts = () => {
   const [products, setProducts] = useState({});
@@ -10,9 +9,14 @@ export const useProducts = () => {
     if (productsFetched != null) {
       setProducts(JSON.parse(productsFetched));
     } else {
-      getData().then((finalData:any) => {
-        setProducts(JSON.parse(JSON.stringify(finalData)));
-      });
+      const getInfo = async()=>{
+        const {getData} = await import('../../../data/ProdFetch');
+        getData().then((finalData:any) => {
+          setProducts(JSON.parse(JSON.stringify(finalData)));
+        });
+      }
+      getInfo();
+   
     }
   }, []);
 

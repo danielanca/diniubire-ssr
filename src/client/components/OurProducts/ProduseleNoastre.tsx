@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 import HelmetHead from '../mini/HelmetHead/HelmetHead';
 import HeadlineTitle from "../mini/HeadLiners/HeadLiners/HeadlineTitle";
 import ProductItem from "../Products/ProductItem";
 
-import { getData } from "../../data/productList";
 import { ProductsFromSessionStorage } from '../../data/constants';
 import {ProductListType} from "../../utils/OrderInterfaces";
 import styles from "../../components/OurProducts/ProduseleNoastre.module.scss";
@@ -19,9 +18,13 @@ const ProduseleNoastre = () => {
     if (productsFromSession != null) {
       setProducts(JSON.parse(productsFromSession));
     } else {
-      getData().then((finalData:any) => {
-        setProducts(JSON.parse(JSON.stringify(finalData)));
-      });
+      const getTheInfo = async () =>{
+          const {getData} = await import('../../data/productList');
+          getData().then((finalData:any) => {
+            setProducts(JSON.parse(JSON.stringify(finalData)));
+          });
+      }
+      getTheInfo();
     }
   }, [productsFromSession]);
 
