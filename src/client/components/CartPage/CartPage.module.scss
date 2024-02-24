@@ -116,17 +116,27 @@
   width: 100%;
   height: 20%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  @include media('<tablet'){
+    padding: 10px;
+  }
 }
 .deliveryLine {
   width: 100%;
   height: 30%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @include media('<tablet'){
+    padding: 10px;
+  }
 }
 .totalLine {
   background-color: rgb(223, 222, 222);
   width: 100%;
   height: 20%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @include media('<tablet'){
+    padding: 10px;
+  }
 }
 
 .finishTheOrderBox {
@@ -146,6 +156,9 @@
   font-family: "Roboto";
   margin-bottom: 0;
   font-weight: bolder;
+  @include media('<tablet'){
+    text-align: end;
+  }
 }
 .colCenter {
   display: flex;
@@ -178,10 +191,17 @@
 }
 .bottomLeft {
   @include col-size(6,"sm");
+  @include media("<tablet") {
+    display: none;
+  }
 }
 .bottomRight {
   @include col-size(6,"sm");
   padding: 20px;
+  @include media("<tablet"){
+    padding: 20px 0px;
+    width: 100%;
+  }
 }
 
 .innerAlign {

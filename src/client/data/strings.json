@@ -95,7 +95,7 @@
   "orderFinishPage": {
     "finishGuide": "Finalizeaza comanda",
     "deliveringInfor": "Pregatim comanda de indata, ne mai lipsesc datele de livrare",
-    "invoiceDetails": "Detalii factura",
+    "invoiceDetails": "Detalii livrare",
     "inputsLabels": {
       "lastName": "Nume",
       "firstName": "Prenume",
@@ -103,7 +103,7 @@
       "city": "Oras",
       "county": "Judet",
       "phoneNo": "Telefon",
-      "emailAddress": "Email [opțional]",
+      "emailAddress": "Email [pentru Easybox este necesar sa primiti informatii]",
       "orderMentions": "Note comandă [opțional]",
       "lockerDelivery": "Scrie numele easybox-ului și orasul"
     },
@@ -113,7 +113,7 @@
       "total": "Total",
       "subTotal": "Subtotal",
       "currency": "RON",
-      "TVAincluded": "TVA inclus",
+      "TVAincluded": "",
       "transport": "Transport"
     },
     "shipping": {
@@ -219,7 +219,7 @@
     "shippingTax": "Taxa transport",
     "total": "Total",
     "sendingInfo": "Livrare standard prin SameDay",
-    "VATincluded": "(include TVA)",
+    "VATincluded": "LEI (Taxe incluse)",
     "currency": "RON"
   },
 
