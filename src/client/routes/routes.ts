@@ -8,7 +8,7 @@ const routes : publicRoutesType[]  = [
     ...publicRoutes,
     // ...adminRoutes,
     // ...shopRoutes,
-    // ...gameRoutes
+    ...gameRoutes
 ]
 
 export default routes;

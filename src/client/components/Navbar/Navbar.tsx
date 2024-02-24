@@ -69,7 +69,7 @@ const NavBar = ({ clearNotif }: NavProps) => {
                   </NavHashLink>
                 </li>
                 <li className={styles.liItem}>
-                  <NavHashLink className={styles.HashLinkStyle} to={navItems.contactUs.name}>
+                  <NavHashLink className={styles.HashLinkStyle} to={navItems.contactUs.link}>
                     {navItems.contactUs.name}
                   </NavHashLink>
                 </li>
