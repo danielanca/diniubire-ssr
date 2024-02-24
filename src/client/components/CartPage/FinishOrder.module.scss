@@ -123,10 +123,13 @@
   margin-left: 10px;
   margin-right: 20px;
   width: 100%;
-  font-family: "Open Sans Regular";
+  font-family: 'Roboto Medium';
 
   @include media("<tablet") {
     margin: 0px;
+  }
+  label{
+    font-family: 'Roboto Medium';
   }
 }
 .groupInput {
@@ -212,6 +215,7 @@ label {
 .finishOrderTitle {
   text-align: center;
   white-space: nowrap;
+  font-family: 'Roboto Medium';
   margin: 0;
   @include media("<tablet") {
     font-size: 1.4rem;
@@ -258,8 +262,7 @@ label {
 .legendsTable {
   display: flex;
   justify-content: space-between;
-  padding: 0 5%;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 .carShip {
   width: 50px;
