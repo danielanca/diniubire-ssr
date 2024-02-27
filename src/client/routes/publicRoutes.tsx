@@ -47,11 +47,6 @@ const publicRoutes : publicRoutesType[] = [
         layout: PublicLayout,
         component: FAQBlock,
     },
-    {
-        path:'contact',
-        layout:PublicLayout,
-        component:Contact
-    },
     ...TextContentRoutes
 ]
 
