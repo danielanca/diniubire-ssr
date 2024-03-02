@@ -1,73 +1,85 @@
-import { InputProps } from "./typeProps";
-import { orderProps } from "../../utils/OrderInterfaces";
-import strings from "./../../data/strings.json";
-import { componentStrings } from "../../data/componentStrings";
+import { useState, useEffect } from 'react';
+import { InputProps } from './typeProps';
+import { orderProps } from '../../utils/OrderInterfaces';
+import strings from './../../data/strings.json';
+import { componentStrings } from '../../data/componentStrings';
 
 export const getInputFields = (
   orderData: orderProps,
   inputHandler: (data: React.ChangeEvent<HTMLInputElement>) => void
 ) => {
   let { orderFinishPage: orderString } = strings;
+
+  // const [framedImg, setFramedImg] = useState<any>(null);
+
+  // useEffect(() => {
+  //   const framedImg = localStorage.getItem('framedImage');
+
+  //   if (framedImg) {
+  //     setFramedImg(framedImg);
+  //   }
+  // }, []);
+
   const inputObject: InputProps = {
     lastName: {
-      name: "lastName",
+      name: 'lastName',
       inputListener: inputHandler,
       value: orderData.lastName,
       labelText: orderString.inputsLabels.lastName,
-      mandatoryInput: true
+      mandatoryInput: true,
     },
     firstName: {
-      name: "firstName",
+      name: 'firstName',
       inputListener: inputHandler,
       value: orderData.firstName,
       labelText: orderString.inputsLabels.firstName,
-      mandatoryInput: true
+      mandatoryInput: true,
     },
     deliveryAddress: {
-      name: "deliveryAddress",
+      name: 'deliveryAddress',
       inputListener: inputHandler,
       value: orderData.deliveryAddress,
       labelText: orderString.inputsLabels.deliveryAddress,
-      mandatoryInput: true
+      mandatoryInput: true,
     },
     city: {
-      name: "city",
+      name: 'city',
       inputListener: inputHandler,
       value: orderData.city,
       labelText: orderString.inputsLabels.city,
-      mandatoryInput: true
+      mandatoryInput: true,
     },
     county: {
-      name: "county",
+      name: 'county',
       inputListener: inputHandler,
       value: orderData.county,
       labelText: orderString.inputsLabels.county,
       mandatoryInput: true,
       inputOptions: {
-        autoComplete: "false",
-        list: "county"
+        autoComplete: 'false',
+        list: 'county',
       },
       otherStructure: {
         dataList: {
-          name: "county",
-          list: componentStrings.FinishOrder.countyList
-        }
-      }
+          name: 'county',
+          list: componentStrings.FinishOrder.countyList,
+        },
+      },
     },
     phoneNo: {
-      name: "phoneNo",
+      name: 'phoneNo',
       inputListener: inputHandler,
       value: orderData.phoneNo,
       labelText: orderString.inputsLabels.phoneNo,
-      mandatoryInput: true
+      mandatoryInput: true,
     },
     emailAddress: {
-      name: "emailAddress",
+      name: 'emailAddress',
       inputListener: inputHandler,
       value: orderData.emailAddress,
       labelText: orderString.inputsLabels.emailAddress,
-      mandatoryInput: false
-    }
+      mandatoryInput: false,
+    },
   };
 
   return inputObject;

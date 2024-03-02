@@ -8,6 +8,8 @@ import { sendTriggerEmail } from '../../../services/triggers';
 import strings from '../../../data/strings.json';
 import CountdownTimer from "./Countdown/CountdownTimer";
 import parse from "html-react-parser";
+import ImageUploadtoOrder from './ImageUploadtoOrder';
+
 const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes) => {
   let { ProductPreview: content } = strings;
   const [mainPicture, setmainPicture] = useState<number>(0);
@@ -142,6 +144,11 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
         </div>
 
         {productListUpdated && <ProductDescription productDescription={productListUpdated} productID={ID} />}
+
+        {/* User Image Upload */}
+        <div className={styles.imageUploadContainer}>
+          <ImageUploadtoOrder />
+        </div>
       </div>
     </>
   );
