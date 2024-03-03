@@ -30,7 +30,6 @@ export const sendEmail = functions.https.onRequest(async (request, response) => 
       })
       .then((responseToAdmin: any) => {
         ResponseData.EMAILTO_ADMIN = responseToAdmin;
-
         response.send(ResponseData);
       });
   };
