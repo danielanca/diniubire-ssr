@@ -28,6 +28,9 @@
   @include media(">=tablet", "<desktop") {
     justify-content: center;
   }
+  @include media('<tablet'){
+    width: 100%;
+  }
 }
 .rightSection {
   @include col-size(6,"md");

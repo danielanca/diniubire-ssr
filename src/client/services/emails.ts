@@ -5,7 +5,6 @@ import { NewsProps } from "../utils/NewsletterInterface";
 import { getType } from "../utils/TableTypes";
 
 let destination: string = "";
-// const destination = "http://localhost:5000/sapunmontan/us-central1";
 if (process.env.NODE_ENV === "development") {
   destination = "http://localhost:5000/diniubire-89ce0/us-central1";
 } else {

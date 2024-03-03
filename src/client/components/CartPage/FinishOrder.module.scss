@@ -95,6 +95,9 @@
   }
 }
 .topBillText {
+    margin-left: 10px;
+    color: green;
+    font-weight: bolder;
   @include media("<tablet") {
     text-align: center;
   }
@@ -191,6 +194,7 @@ label {
   row-gap: 10px;
   justify-content: space-between;
   font-family: "Roboto Regular";
+  padding-right: 10px;
 }
 .itemUl {
   margin: 10px 0;
@@ -205,12 +209,18 @@ label {
   width: 20px;
 }
 .price {
-  width: 20px;
+  width: 42px;
   text-align: end;
 }
 .productSummarizeTitle {
   width: 268px;
   border-right: 1px solid gray;
+  @include media('<tablet'){
+    width: 250px;
+  }
+  @include media('<=370px'){
+    width: 220px;
+  }
 }
 .finishOrderTitle {
   text-align: center;
@@ -232,7 +242,7 @@ label {
   text-align: end;
   font-family: "Roboto Regular";
   @include media("<tablet") {
-    text-align: center;
+    text-align: flex-end;
     font-size: calc(16px + 2vw);
   }
 }

@@ -7,9 +7,14 @@ import useProductData from "./components/hooks/hooks/useProductData";
 import routes from "./routes/routes";
 import CookieConsent from "./components/CookieConsent/CookieConsent";
 import { getCookie } from "./utils/functions";
-import {ProductsContext} from './Context';
+import { ProductsContext } from './Context';
 
+/* XXXXXXXXXXXXXXXXXXX */
 
+/* WORDS BEFORE: If you run the SSR server as yarn build and then yarn serve, it will be marked as NODE_ENV=PRODUCTION*/
+/* If you run by using yarn dev:server, it will use NODE_ENV=DEVELOPMENT */
+
+/* XXXXXXXXXXXXXXXXXXX */
 
 export const App = () => {
   const getCookieConsent = () => typeof document !== 'undefined' && getCookie("cookieConsentBrasov") !== "userAccepted";

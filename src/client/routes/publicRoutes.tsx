@@ -6,7 +6,6 @@ const PublicLayout = loadable(() => import("../layouts/public/PublicLayout"), {s
 const ProduseleNoastre = loadable( ()=> import("../components/OurProducts/ProduseleNoastre"), {ssr:true});
 const ProductView = loadable( () => import('../components/mini/Product/ProductView'), {ssr:true});
 const FinishOrder = loadable( () => import('../components/CartPage/FinishOrder'), {ssr:true});
-const Contact = loadable( ()=> import('./../components/SimpleContent/SimpleContent'));
 const CartPage = loadable( ()=> import('../components/CartPage/CartPage'), {ssr:true});
 import { TextContentRoutes } from "./contentRoutes/contentRoutes";
 import { publicRoutesType } from './types';

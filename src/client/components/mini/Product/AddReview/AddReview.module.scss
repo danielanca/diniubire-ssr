@@ -21,6 +21,7 @@
   align-items: center;
   flex-direction: column;
   margin-top: 2%;
+  background-color: rgb(240, 240, 240);
   button {
     font-family: "Roboto";
   }
@@ -63,12 +64,14 @@
   flex-direction: column;
   width: 77vw;
   max-width: 533px;
-
   textarea,
   span,
   input {
     font-family: "Roboto";
     resize: none;
+  }
+  input, textarea{
+    padding: 0 1%;
   }
 }
 
