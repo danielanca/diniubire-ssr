@@ -42,7 +42,6 @@ const InvoiceView = () => {
           }
         </h3>
       </div>
-
       {framedImg !== null ? (
         <div>
           {framedImg} <img src={framedImg} alt='' />
