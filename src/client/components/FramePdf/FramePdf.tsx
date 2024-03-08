@@ -9,18 +9,6 @@ import styles from "./InvoiceView.module.scss";
 const InvoiceView = () => {
   let params = useParams();
   let orderID = params.orderID;
-  //   const [invoiceData, setInvoiceData] = useState<OrderViewProps | null>(null);
-  //   const [invoiceData, setInvoiceData] = useState<any>(null);
-  //   useEffect(() => {
-  //     if (!isNaN(Number(orderID))) {
-  //       getOrderByID(Number(orderID))
-  //         .then(response => {
-  //           setInvoiceData(response);
-  //         })
-  //         .catch(error => error);
-  //     }
-  //   }, []);
-
   const [framedImg, setFramedImg] = useState<any>(null);
 
   useEffect(() => {
@@ -42,14 +30,7 @@ const InvoiceView = () => {
           }
         </h3>
       </div>
-      {framedImg !== null ? (
-        <div>
-          {framedImg} <img src={framedImg} alt='' />
-        </div>
-      ) : (
-        "Mubbasher"
-      )}
-      {framedImg != null ? <View invoiceObject={framedImg} /> : "Eroare"}
+      {framedImg != null ? <View frameImage={framedImg} /> : "Eroare"}
     </div>
   );
 };

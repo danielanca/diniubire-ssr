@@ -6,16 +6,16 @@ import PDFView from "./pdf";
 // const InvoicePDF = dynamic(() => import("./pdf"), { ssr: false });
 
 type invoiceInterface = {
-  invoiceObject: OrderViewProps;
+  frameImage: OrderViewProps;
 };
-const View = ({ invoiceObject }: invoiceInterface) => {
+const View = ({ frameImage }: invoiceInterface) => {
   // const [client, setClient] = useState(false);
   // useEffect(() => {
   //   setClient(true);
   // }, []);
 
-  return <PDFView invoiceObject={invoiceObject} />;
-  // return <>{invoiceObject}</>;
+  return <PDFView frameImage={frameImage} />;
+  // return <>{frameImage}</>;
 };
 
 /* This remains to be seen in the future. Errors on the go!*/

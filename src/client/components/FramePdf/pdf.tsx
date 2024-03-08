@@ -18,8 +18,8 @@ Font.register({
   src: "https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf",
 });
 const stylesPDF = StyleSheet.create({
-  pdfParentContainer: {
-    backgroundColor: "black",
+  PDFViewer: {
+    height: "300px",
   },
   logo: {
     width: 74,
@@ -144,55 +144,33 @@ const stylesPDF = StyleSheet.create({
   totals: { width: "50%", padding: "0 2%", fontSize: "16px" },
 });
 
-const PDF = ({ invoiceObject }: any) => {
-  let productsListInvoice: any[] =
-    typeof invoiceObject.cartProducts === "string"
-      ? JSON.parse(invoiceObject.cartProducts)
-      : null;
-  let companyInfo = strings.companyData;
-
-  console.log("firsts", invoiceObject);
-
-  let abc = invoiceObject;
+const PDF = ({ frameImage }: any) => {
+  let framePdfImg = frameImage;
   return (
     <>
-      <div className='pdfParentContainer'>
-        <Page size={"A4"} wrap>
-          <Image src={abc} />
-          <Text>{abc}</Text>
-          <Image
-            src={
-              "https://firebasestorage.googleapis.com/v0/b/sapunmontan.appspot.com/o/frameImages%2FEmotionXpert-Logo.png?alt=media&token=809ac854-209c-4733-8c3b-88b14ecbfff4"
-            }
-          />
-          <Image src={"https://img.icons8.com/android/96/000000/phone.png"} />
+      <div>
+        <Page size={"A4"}>
+          <Image src={framePdfImg} />
         </Page>
       </div>
     </>
   );
 };
 
-const PDFView = ({ invoiceObject }: string | null | any) => {
+const PDFView = ({ frameImage }: string | null | any) => {
   // const [client, setClient] = useState(false);
   // useEffect(() => {
   //   setClient(true);
   // }, []);
 
-  let abc = invoiceObject;
+  let framePdfImg = frameImage;
 
   return (
     <div>
-      <PDFViewer width={"600px"} height={"860px"} showToolbar={false}>
-        <PDF invoiceObject={invoiceObject} />
+      <PDFViewer width={"500px"} height={"600px"} showToolbar={false}>
+        <PDF frameImage={framePdfImg} />
       </PDFViewer>
-      <Image src={abc} />
-      <Text>{abc}</Text>
-      <Image
-        src={
-          "https://firebasestorage.googleapis.com/v0/b/sapunmontan.appspot.com/o/frameImages%2FEmotionXpert-Logo.png?alt=media&token=809ac854-209c-4733-8c3b-88b14ecbfff4"
-        }
-      />
-      <Image src={"https://img.icons8.com/android/96/000000/phone.png"} />
+      <Image src={framePdfImg} />
     </div>
   );
 };
