@@ -1,8 +1,8 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
-import {ProdItemProps} from '../../utils/OrderInterfaces';
-import styles from './../../components/Products/ProductItem.module.scss';
-import strings from '../../data/strings.json';
+import { ProdItemProps } from "../../utils/OrderInterfaces";
+import styles from "./../../components/Products/ProductItem.module.scss";
+import strings from "../../data/strings.json";
 
 const ProductItem = ({ productObject, size }: ProdItemProps) => {
   let { ProductItem: ProductItemStrings } = strings;
@@ -21,7 +21,7 @@ const ProductItem = ({ productObject, size }: ProdItemProps) => {
     <HashLink onClick={gotoElement} className={styles.HashLinkStyle} to={"/produs/" + productObject.ID}>
       <div className={renderSize()}>
         <div className={styles.imageWrap}>
-          <img className={styles.productImage} src={productObject.imageProduct[0] }></img>
+          <img className={styles.productImage} src={productObject.imageProduct[0]}></img>
         </div>
         <div className={styles.titleWrap}>
           <span className={styles.productTitle}>{productObject.title}</span>
@@ -30,7 +30,7 @@ const ProductItem = ({ productObject, size }: ProdItemProps) => {
         <div className={styles.priceWrap}>
           <span className={styles.productPrice}>{productObject.price + ` ${ProductItemStrings.Currency}`}</span>
         </div>
-        <button className={styles.addToCart}>{ProductItemStrings.SeeProduct}</button>
+        <button className={styles.ProductItem_addToCart}>{ProductItemStrings.SeeProduct}</button>
         {/* <div className={styles.discountWrap}>
           <p className={styles.discountText}>{'REDUCERE'}</p>
         </div> */}
