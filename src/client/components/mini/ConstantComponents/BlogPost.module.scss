@@ -1,5 +1,4 @@
 @import "../../../styles/main.scss";
-@import "../../../styles/themes.scss";
 
 .centerFlex {
   display: flex;
@@ -122,6 +121,7 @@
 }
 .relatedListing {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   min-height: 200px;
