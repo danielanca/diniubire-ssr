@@ -3,7 +3,7 @@
   "trailingComma": "es5",
   "singleQuote": false,
   "jsxSingleQuote": true,
-  "printWidth": 80,
+  "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
   "jsxBracketSameLine": false,
