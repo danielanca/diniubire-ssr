@@ -1,56 +1,60 @@
-import loadable from '@loadable/component';
+import loadable from "@loadable/component";
 
-const Mainpage = loadable(() => import('../pages/Mainpage'), {ssr:true});
-const FAQBlock = loadable(() => import("../pages/FAQ/FAQBlock"), {ssr:true});
-const PublicLayout = loadable(() => import("../layouts/public/PublicLayout"), {ssr:true});
-const ProduseleNoastre = loadable( ()=> import("../components/OurProducts/ProduseleNoastre"), {ssr:true});
-const ProductView = loadable( () => import('../components/mini/Product/ProductView'), {ssr:true});
-const FinishOrder = loadable( () => import('../components/CartPage/FinishOrder'), {ssr:true});
-const CartPage = loadable( ()=> import('../components/CartPage/CartPage'), {ssr:true});
+const Mainpage = loadable(() => import("../pages/Mainpage"), { ssr: true });
+const FAQBlock = loadable(() => import("../pages/FAQ/FAQBlock"), { ssr: true });
+const PublicLayout = loadable(() => import("../layouts/public/PublicLayout"), { ssr: true });
+const ProduseleNoastre = loadable(() => import("../components/OurProducts/ProduseleNoastre"), { ssr: true });
+const ProductView = loadable(() => import("../components/mini/Product/ProductView"), { ssr: true });
+const FinishOrder = loadable(() => import("../components/CartPage/FinishOrder"), { ssr: true });
+const Blogs = loadable(() => import("../components/mini/ConstantComponents/Blogs"), { ssr: true });
+const CartPage = loadable(() => import("../components/CartPage/CartPage"), { ssr: true });
+const BlogPost = loadable(() => import("../components/mini/ConstantComponents/BlogPost"), { ssr: true });
 import { TextContentRoutes } from "./contentRoutes/contentRoutes";
-import { publicRoutesType } from './types';
+import { publicRoutesType } from "./types";
 
+const publicRoutes: publicRoutesType[] = [
+  {
+    path: "",
+    layout: PublicLayout,
+    component: Mainpage,
+  },
+  {
+    path: "produsele-noastre",
+    layout: PublicLayout,
+    component: ProduseleNoastre,
+  },
+  {
+    path: "produs/:productID",
+    layout: PublicLayout,
+    component: ProductView,
+  },
+  {
+    path: "finalizare-comanda",
+    layout: PublicLayout,
+    component: FinishOrder,
+  },
+  {
+    path: "cosulmeu",
+    layout: PublicLayout,
+    component: CartPage,
+  },
+  {
+    path: "intrebari",
+    layout: PublicLayout,
+    component: FAQBlock,
+  },
+  {
+    path: "blogs",
+    layout: PublicLayout,
+    component: Blogs,
+  },
+  {
+    path: "/blogid/:blogLink",
+    layout: PublicLayout,
+    component: BlogPost,
+  },
 
-const publicRoutes : publicRoutesType[] = [
-
-    {
-        path:"",
-        layout: PublicLayout,
-        component: Mainpage ,
-    },
-    {
-        path:"produsele-noastre",
-        layout: PublicLayout,
-        component: ProduseleNoastre,
-    },
-    {
-        path:"produs/:productID",
-        layout: PublicLayout,
-        component: ProductView,
-      
-    },
-    {
-        path:"finalizare-comanda",
-        layout: PublicLayout,
-        component: FinishOrder,
-      
-    },
-    {
-        path:"cosulmeu",
-        layout: PublicLayout,
-        component: CartPage,
-      
-    },
-    {
-        path:"intrebari",
-        layout: PublicLayout,
-        component: FAQBlock,
-    },
-    ...TextContentRoutes
-]
-
-
-
-
+  ...TextContentRoutes,
+];
 
 export default publicRoutes;
