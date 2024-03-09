@@ -16,11 +16,9 @@ import { useOrderObject } from "./useOrderData";
 import { getInputFields } from "./inputFields";
 import { areInputsValid } from "./funcs";
 
-
-interface EasyBoxListType{
-  [key:string] : any;
+interface EasyBoxListType {
+  [key: string]: any;
 }
-
 
 const FinishOrder = ({ clearNotification }: OrderProps) => {
   let { orderFinishPage: orderString } = strings;
@@ -34,7 +32,10 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
   const easyboxList: EasyBoxListType = [];
 
   const url = "https://api.smartship.ro/geolocation/easybox";
-  const options = { method: "GET", headers: { "X-API-KEY": " d7cc7d6074ec087be903ca30d35c9696" } };
+  const options = {
+    method: "GET",
+    headers: { "X-API-KEY": " d7cc7d6074ec087be903ca30d35c9696" },
+  };
 
   const handleSearch = (query: string) => {
     console.log("We are searching for:", query, results["easybox"]);
@@ -56,7 +57,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
   const [completionState, setError] = useState<ErrorProps>({
     paymentSelected: false,
     termsAccepted: false,
-    inputCompleted: false
+    inputCompleted: false,
   });
   const { orderData, setorderData } = useOrderObject();
 
@@ -64,7 +65,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     try {
       console.log("Sending data:", orderData);
       return await sendOrderConfirmation(orderData)
-        .then((response) => {
+        .then(response => {
           response.json().then((jsonResponse: any) => {
             // console.log("Whole Object:", jsonResponse);
             // console.log("Is Email to Client sent? : ", jsonResponse.EMAILTO_CLIENT);
@@ -73,7 +74,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
 
           setOrderState("finishState");
         })
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
     } catch (error) {
       console.log(error);
     }
@@ -84,19 +85,19 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
 
   const paymentMethodHandler = (value: boolean, title: string | undefined) => {
     if (value) {
-      setorderData((orderData:any) => ({
+      setorderData((orderData: any) => ({
         ...orderData,
-        paymentMethod: typeof title === "string" ? title : "NOT_SPECIFIED"
+        paymentMethod: typeof title === "string" ? title : "NOT_SPECIFIED",
       }));
     } else {
-      setorderData((orderData:any) => ({ ...orderData, paymentMethod: "" }));
+      setorderData((orderData: any) => ({ ...orderData, paymentMethod: "" }));
     }
   };
   const deliveryMethodHandler = (value: boolean, title: string | undefined) => {
     if (value) {
-      setorderData((orderData:any) => ({
+      setorderData((orderData: any) => ({
         ...orderData,
-        deliveryMethod: typeof title === "string" ? title : "NOT_SPECIFIED"
+        deliveryMethod: typeof title === "string" ? title : "NOT_SPECIFIED",
       }));
     }
     if (title === orderString.shipping.deliveryMethods.easyboxDelivery) {
@@ -108,9 +109,9 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
 
   const inputHandler = (data: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = data.target;
-    setorderData((orderData:any) => ({
+    setorderData((orderData: any) => ({
       ...orderData,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -129,7 +130,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
           name: productSessionStorage[item.id].title,
           itemNumber: item.itemNumber,
           imageProduct: productSessionStorage[item.id].imageProduct[0],
-          price: productSessionStorage[item.id].price
+          price: productSessionStorage[item.id].price,
         });
       });
     } else {
@@ -138,7 +139,10 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     }
   }
   const termAcceptHandler = () => {
-    setError((completionState) => ({ ...completionState, termsAccepted: !completionState.termsAccepted }));
+    setError(completionState => ({
+      ...completionState,
+      termsAccepted: !completionState.termsAccepted,
+    }));
   };
 
   useEffect(() => {
@@ -154,11 +158,11 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     }
   }, [orderState]);
   useEffect(() => {
-    setorderData((orderData) => ({
+    setorderData(orderData => ({
       ...orderData,
       cartSum: subtotalPrepare,
       shippingTax: deliveryFee,
-      cartProducts: JSON.stringify(explicitProductList)
+      cartProducts: JSON.stringify(explicitProductList),
     }));
   }, [subtotalPrepare]);
 
@@ -168,12 +172,21 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     // }
     if (orderState == "initState" || orderState == "requestState" || orderState == "errorState") {
       if (areInputsValid(orderData)) {
-        setError((completionState) => ({ ...completionState, inputCompleted: true }));
+        setError(completionState => ({
+          ...completionState,
+          inputCompleted: true,
+        }));
       } else {
-        setError((completionState) => ({ ...completionState, inputCompleted: false }));
+        setError(completionState => ({
+          ...completionState,
+          inputCompleted: false,
+        }));
       }
       if (orderData.paymentMethod !== "") {
-        setError((completionState) => ({ ...completionState, paymentSelected: true }));
+        setError(completionState => ({
+          ...completionState,
+          paymentSelected: true,
+        }));
       }
     }
   }, [orderState, orderData]);
@@ -263,10 +276,13 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                   <label className={styles.optionalNote}>{orderString.inputsLabels.orderMentions}</label>
                   <textarea
                     className={styles.textareaparticular}
-                    spellCheck="false"
+                    spellCheck='false'
                     rows={2}
-                    onChange={(event) => {
-                      setorderData((orderData) => ({ ...orderData, orderNotes: event.target.value }));
+                    onChange={event => {
+                      setorderData(orderData => ({
+                        ...orderData,
+                        orderNotes: event.target.value,
+                      }));
                     }}
                     value={orderData.orderNotes}
                   />
@@ -280,7 +296,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                   <span>{orderString.totals.subTotal}</span>
                 </div>
                 <ul className={styles.itemUl}>
-                  {storedCart.map((item) => (
+                  {storedCart.map(item => (
                     <li className={styles.itemLi}>
                       <span className={styles.productSummarizeTitle}>{productSessionStorage[item.id].title}</span>
                       <span className={styles.count}>{Number(item.itemNumber) + "x"}</span>
@@ -314,7 +330,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                       onSwitchEnabled={paymentMethodHandler}
                       name={orderString.shipping.paymentMethodOptions.cash}
                     />
-                    <label className={styles.methodPaymentCheck} htmlFor="delivercheck">
+                    <label className={styles.methodPaymentCheck} htmlFor='delivercheck'>
                       {orderString.shipping.paymentMethodOptions.cash}
                     </label>
                   </div>
@@ -322,7 +338,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
               </div>
               <div className={styles.filledSpacePaymentMtd}>
                 {orderState === "errorState" && orderData.paymentMethod === "" && (
-                  <h4 className="text-center " style={{ color: "red" }}>
+                  <h4 className='text-center ' style={{ color: "red" }}>
                     {orderString.shipping.paymentMethodError}
                   </h4>
                 )}
@@ -336,7 +352,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                       onSwitchEnabled={deliveryMethodHandler}
                       name={orderString.shipping.deliveryMethods.courierDelivery}
                     />
-                    <label className={styles.methodPaymentCheck} htmlFor="delivercheck">
+                    <label className={styles.methodPaymentCheck} htmlFor='delivercheck'>
                       {"Curier"}
                     </label>
                   </div>
@@ -345,11 +361,11 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                       onSwitchEnabled={deliveryMethodHandler}
                       name={orderString.shipping.deliveryMethods.easyboxDelivery}
                     />
-                    <label className={styles.methodPaymentCheck} htmlFor="delivercheck">
+                    <label className={styles.methodPaymentCheck} htmlFor='delivercheck'>
                       <img
                         width={100}
                         height={50}
-                        src="https://firebasestorage.googleapis.com/v0/b/diniubire-89ce0.appspot.com/o/ProductMedia%2Feasybox.svg?alt=media&token=3f1610ed-956c-4234-b45e-4429e3dace3b"
+                        src='https://firebasestorage.googleapis.com/v0/b/diniubire-89ce0.appspot.com/o/ProductMedia%2Feasybox.svg?alt=media&token=3f1610ed-956c-4234-b45e-4429e3dace3b'
                       />
                     </label>
                   </div>
@@ -358,9 +374,9 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                       <div className={styles.inputBox}>
                         <label className={styles.optionalNote}>{orderString.inputsLabels.lockerDelivery}</label>
                         <input
-                          type="text"
+                          type='text'
                           value={orderData.lockerName}
-                          name="lockerName"
+                          name='lockerName'
                           onChange={inputHandler}
                           // onChange={(e) => {
                           //   // setSearch(e.target.value);
@@ -395,7 +411,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
 
             <div
               style={{
-                visibility: orderState === "errorState" && !completionState.inputCompleted ? "visible" : "hidden"
+                visibility: orderState === "errorState" && !completionState.inputCompleted ? "visible" : "hidden",
               }}
               className={styles.warningOrderWrapper}
             >
@@ -417,7 +433,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                   <div className={styles.checkBoxStyle}>
                     <Checkboxer onSwitchEnabled={termAcceptHandler} />
 
-                    <label htmlFor="acceptTerms" className={styles.acceptTerms}>
+                    <label htmlFor='acceptTerms' className={styles.acceptTerms}>
                       {orderString.policyAgremenet.constent.confirm}
                     </label>
                   </div>
@@ -427,7 +443,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
                     )}
                   </div>
                 </div>
-                <button onClick={sendOrderData} type="submit" className={styles.finishOrder}>
+                <button onClick={sendOrderData} type='submit' className={styles.finishOrder}>
                   {orderState != "pendingState" ? (
                     <p>{orderString.orderItself.sendFinishOrder.nameButton}</p>
                   ) : (
