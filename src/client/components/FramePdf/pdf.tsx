@@ -149,7 +149,7 @@ const PDF = ({ frameImage }: any) => {
   return (
     <>
       <div>
-        <Page size={"A4"}>
+        <Page size={[360, 504]}>
           <Image src={framePdfImg} />
         </Page>
       </div>
