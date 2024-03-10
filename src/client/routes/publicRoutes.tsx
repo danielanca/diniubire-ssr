@@ -5,18 +5,9 @@ const FAQBlock = loadable(() => import("../pages/FAQ/FAQBlock"), { ssr: true });
 const PublicLayout = loadable(() => import("../layouts/public/PublicLayout"), {
   ssr: true,
 });
-const ProduseleNoastre = loadable(
-  () => import("../components/OurProducts/ProduseleNoastre"),
-  { ssr: true }
-);
-const ProductView = loadable(
-  () => import("../components/mini/Product/ProductView"),
-  { ssr: true }
-);
-const FinishOrder = loadable(
-  () => import("../components/CartPage/FinishOrder"),
-  { ssr: true }
-);
+const ProduseleNoastre = loadable(() => import("../components/OurProducts/ProduseleNoastre"), { ssr: true });
+const ProductView = loadable(() => import("../components/mini/Product/ProductView"), { ssr: true });
+const FinishOrder = loadable(() => import("../components/CartPage/FinishOrder"), { ssr: true });
 const CartPage = loadable(() => import("../components/CartPage/CartPage"), {
   ssr: true,
 });

@@ -6,10 +6,12 @@ import { getType } from "../utils/TableTypes";
 
 let destination: string = "";
 if (process.env.NODE_ENV === "development") {
-  destination = "http://localhost:5000/diniubire-89ce0/us-central1";
+  destination = "http://localhost:5000/sapunmontan/us-central1";
 } else {
-  destination = "https://us-central1-diniubire-89ce0.cloudfunctions.net";
+  destination = "https://us-central1-sapunmontan.cloudfunctions.net";
 }
+//http://localhost:5000/diniubire-89ce0/us-central1
+//https://us-central1-diniubire-89ce0.cloudfunctions.net
 
 export const requestOrdersList = async () => {
   return await fetch(`${destination}/requestOrders`, {
@@ -18,11 +20,11 @@ export const requestOrdersList = async () => {
     mode: "cors",
     body: JSON.stringify({
       someData: "someTest",
-      authCookie: getCookie("jwt")
-    })
+      authCookie: getCookie("jwt"),
+    }),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const sendReviewToBack = async (reviewObj: ReviewsInterface) => {
@@ -36,11 +38,11 @@ export const sendReviewToBack = async (reviewObj: ReviewsInterface) => {
       reviewActual: reviewObj.reviewActual,
       email: reviewObj.email,
       reviewProductID: reviewObj.reviewProductID,
-      mediaLink: reviewObj.mediaLink
-    })
+      mediaLink: reviewObj.mediaLink,
+    }),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const sendOrderConfirmation = async (data: orderProps) => {
@@ -63,11 +65,11 @@ export const sendOrderConfirmation = async (data: orderProps) => {
       cartProducts: data.cartProducts,
       paymentStatus: data.paymentStatus,
       lockerName: data.lockerName,
-      deliveryMethod: data.deliveryMethod
-    })
+      deliveryMethod: data.deliveryMethod,
+    }),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const requestLoginAccess = async (email: string, password: string) => {
@@ -75,10 +77,10 @@ export const requestLoginAccess = async (email: string, password: string) => {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify({ email: email, password: password })
+    body: JSON.stringify({ email: email, password: password }),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const updateProduct = async (productModel: ProductModel) => {
@@ -86,20 +88,20 @@ export const updateProduct = async (productModel: ProductModel) => {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify(productModel)
+    body: JSON.stringify(productModel),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 export const addProduct = async (productModel: ProductModel) => {
   return await fetch(`${destination}/addProduct`, {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify(productModel)
+    body: JSON.stringify(productModel),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const deleteProduct = async (productModel: ProductModel) => {
@@ -108,10 +110,10 @@ export const deleteProduct = async (productModel: ProductModel) => {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify(productModel.ID)
+    body: JSON.stringify(productModel.ID),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const addToNewsletter = async (subscriberData: NewsProps) => {
@@ -119,10 +121,10 @@ export const addToNewsletter = async (subscriberData: NewsProps) => {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify(subscriberData)
+    body: JSON.stringify(subscriberData),
   })
-    .then((res) => res)
-    .catch((error) => error);
+    .then(res => res)
+    .catch(error => error);
 };
 
 export const getStringsList = async (type: string): Promise<getType> => {
@@ -130,18 +132,18 @@ export const getStringsList = async (type: string): Promise<getType> => {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify({ stringRequest: type })
+    body: JSON.stringify({ stringRequest: type }),
   })
-    .then((result) => result.json().then((resultString: getType) => resultString))
-    .catch((error) => error);
+    .then(result => result.json().then((resultString: getType) => resultString))
+    .catch(error => error);
 };
 export const sendStringsList = async (type: string, payload: string): Promise<getType> => {
   return await fetch(`${destination}/sendStringsList`, {
     credentials: "include",
     method: "POST",
     mode: "cors",
-    body: JSON.stringify({ stringRequest: type, payload })
+    body: JSON.stringify({ stringRequest: type, payload }),
   })
-    .then((result) => result.json().then((resultString) => resultString))
-    .catch((error) => error);
+    .then(result => result.json().then(resultString => resultString))
+    .catch(error => error);
 };
