@@ -9,6 +9,7 @@ interface ProductSessionProps {
     reviews: {};
     shortDescription: string;
     title: string;
+    feature: string[];
   };
 }
 interface ProductCookiesProps {
@@ -25,7 +26,7 @@ export const makeCheck = (sessionData: ProductSessionProps, cartData: ProductCoo
     }
   });
 
-  return cartData.filter((filterItem) => !namesNotFound.includes(filterItem.id));
+  return cartData.filter(filterItem => !namesNotFound.includes(filterItem.id));
 };
 
 export const devConsole = (data: any) => {

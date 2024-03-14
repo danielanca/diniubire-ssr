@@ -10,11 +10,7 @@ import CountdownTimer from "./Countdown/CountdownTimer";
 import parse from "html-react-parser";
 import ImageUploadtoOrder from "./ImageUploadtoOrder";
 
-const ProductPreview = ({
-  productListUpdated,
-  ID,
-  addCartHandler,
-}: ProductTypes) => {
+const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes) => {
   let { ProductPreview: content } = strings;
   const [mainPicture, setmainPicture] = useState<number>(0);
   const [popProductInCart, setpopProductInCart] = useState<boolean>(false);
@@ -48,6 +44,7 @@ const ProductPreview = ({
   };
   let dateToday = new Date();
   let dateTommorow = dateToday.getDate() + 1;
+
   return (
     <>
       <div className={styles.sectionParent}>
@@ -67,67 +64,36 @@ const ProductPreview = ({
             {productListUpdated != null ? (
               <div className={styles.previewImageContainer}>
                 {productListUpdated[ID].imageProduct.length > 1 &&
-                  productListUpdated[ID].imageProduct.map(
-                    (image: string, index: number) => {
-                      return (
-                        <div
-                          onClick={onImageClicked.bind(this, index)}
-                          className={
-                            mainPicture === index
-                              ? styles.activeImage
-                              : styles.clickableImage
-                          }
-                        >
-                          <img
-                            alt='product for selling'
-                            className={styles.innerImage}
-                            src={productListUpdated[ID].imageProduct[index]}
-                          />
-                        </div>
-                      );
-                    }
-                  )}
+                  productListUpdated[ID].imageProduct.map((image: string, index: number) => {
+                    return (
+                      <div
+                        onClick={onImageClicked.bind(this, index)}
+                        className={mainPicture === index ? styles.activeImage : styles.clickableImage}
+                      >
+                        <img
+                          alt='product for selling'
+                          className={styles.innerImage}
+                          src={productListUpdated[ID].imageProduct[index]}
+                        />
+                      </div>
+                    );
+                  })}
               </div>
             ) : (
               ""
             )}
           </div>
         </div>
-
         <div className={styles.rightSection}>
           <div className={styles.rightContainer}>
-            <h3 className={styles.productTitle}>
-              {productListUpdated != null
-                ? productListUpdated[ID].title
-                : "..."}
-            </h3>
+            <h3 className={styles.productTitle}>{productListUpdated != null ? productListUpdated[ID].title : "..."}</h3>
             <div className={styles.reviewContainer}>
               <div className={styles.starsContainer}>
-                <img
-                  alt='stars icons'
-                  className={styles.reviewStar}
-                  src={images.star}
-                />
-                <img
-                  alt='stars icons'
-                  className={styles.reviewStar}
-                  src={images.star}
-                />
-                <img
-                  alt='stars icons'
-                  className={styles.reviewStar}
-                  src={images.star}
-                />
-                <img
-                  alt='stars icons'
-                  className={styles.reviewStar}
-                  src={images.star}
-                />
-                <img
-                  alt='stars icons'
-                  className={styles.reviewStar}
-                  src={images.star}
-                />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
               </div>
               {/* <span className={styles.reviewHead}>
                 {productListUpdated != null
@@ -142,22 +108,16 @@ const ProductPreview = ({
                 <div className={styles.shortDescription}>
                   <p>{parse(productListUpdated[ID].shortDescription)}</p>
                 </div>
-                <div className={styles.longDescription}>
-                  {parse(productListUpdated[ID].firstDescription)}
-                </div>
+                <div className={styles.longDescription}>{parse(productListUpdated[ID].firstDescription)}</div>
               </>
             )}
             {productListUpdated && (
               <>
                 <div className={styles.priceWrapper}>
                   <div className={styles.productPriceOld}>
-                    {Number(productListUpdated[ID].price) +
-                      Number(productListUpdated[ID].price) * 0.45 +
-                      " LEI"}
+                    {Number(productListUpdated[ID].price) + Number(productListUpdated[ID].price) * 0.45 + " LEI"}
                   </div>
-                  <div className={styles.productPrice}>
-                    {productListUpdated[ID].price + " LEI"}
-                  </div>
+                  <div className={styles.productPrice}>{productListUpdated[ID].price + " LEI"}</div>
                   {countdownAllowed && (
                     <div className={styles.oldPrice}>
                       {parse(
@@ -185,18 +145,22 @@ const ProductPreview = ({
             {popProductInCart && <ProductAdded animFin={animEnded} id={ID} />}
           </div>
         </div>
+        {productListUpdated && <ProductDescription productDescription={productListUpdated} productID={ID} />}
 
-        {productListUpdated && (
-          <ProductDescription
-            productDescription={productListUpdated}
-            productID={ID}
-          />
-        )}
-
-        {/* User Image Upload */}
-        <div className={styles.imageUploadContainer}>
-          <ImageUploadtoOrder />
-        </div>
+        {/* Frame Feature */}
+        {productListUpdated != null && productListUpdated[ID]?.feature.length > 0 ? (
+          <div>
+            {productListUpdated[ID].feature.map((featureItem: string, index: number) => (
+              <div key={index}>
+                {featureItem === "frameFeature" && (
+                  <div className={styles.imageUploadContainer}>
+                    <ImageUploadtoOrder productFeature={productListUpdated} productID={ID} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </>
   );

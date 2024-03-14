@@ -1,7 +1,7 @@
 import { collection, doc, getFirestore, getDoc, getDocs } from "firebase/firestore";
 import app from "../firebase";
 // import { devConsole } from "./../functions/utilsFunc";
-let productList :any[]= [];
+let productList: any[] = [];
 
 const db = getFirestore(app);
 
@@ -38,11 +38,11 @@ interface productType {
   reviews: {};
   shortDescription: string;
   title: string;
+  feature: [];
 }
 export const getOrderByID = async (invoiceID: number) => {
-  
-  const LoadData = async() =>{
-    const fireStoreModule = await import('firebase/firestore');
+  const LoadData = async () => {
+    const fireStoreModule = await import("firebase/firestore");
     const productData = fireStoreModule.doc(db, "orders", invoiceID.toString());
     const snap = await fireStoreModule.getDoc(productData);
     let productsAreHere;
@@ -50,15 +50,14 @@ export const getOrderByID = async (invoiceID: number) => {
       productsAreHere = snap.data();
     }
     return productsAreHere;
-  }
+  };
   return LoadData();
-
 };
 export const getAllOrders = async () => {
   const snapShot = await getDocs(collection(db, "orders"));
-  let dataProducts:any[] = [];
+  let dataProducts: any[] = [];
 
-  snapShot.forEach((doc) => {
+  snapShot.forEach(doc => {
     dataProducts.push(doc.data());
   });
 
@@ -68,7 +67,7 @@ export const getData = async () => {
   const snapShot = await getDocs(collection(db, "products"));
   let dataProducts = {};
 
-  snapShot.forEach((doc) => {
+  snapShot.forEach(doc => {
     Object.values(doc.data()).forEach((itemData: productType) => {
       dataProducts = {
         ...dataProducts,
@@ -81,8 +80,9 @@ export const getData = async () => {
           price: itemData.price,
           reviews: itemData.reviews,
           shortDescription: itemData.shortDescription,
-          title: itemData.title
-        }
+          title: itemData.title,
+          feature: itemData.feature,
+        },
       };
     });
   });
@@ -93,7 +93,7 @@ export const getProductWithID = async (productID: string) => {
   //here productID might be ''
   const productData = doc(db, "products", "activeProds");
   const snap = await getDoc(productData);
-  let productsAreHere:any;
+  let productsAreHere: any;
   if (snap.exists()) {
     Object.values(snap.data()).map((item: productType) => {
       productsAreHere = {
@@ -107,8 +107,9 @@ export const getProductWithID = async (productID: string) => {
           price: item.price,
           reviews: item.reviews,
           shortDescription: item.shortDescription,
-          title: item.title
-        }
+          title: item.title,
+          feature: item.feature,
+        },
       };
     });
     // productsAreHere = Object.values(snap.data());
@@ -134,7 +135,7 @@ const getallPr = async () => {
 export const getInvoiceByID = async (ID: string) => {
   const invoiceData = doc(db, "invoice", "activeInvoice");
   const snapInvoice = await getDoc(invoiceData);
-  var invoicesAreHere:any;
+  var invoicesAreHere: any;
   if (snapInvoice.exists()) {
     Object.values(snapInvoice.data()).map(async (invoice: InvoiceModel) => {
       invoicesAreHere = {
@@ -150,8 +151,8 @@ export const getInvoiceByID = async (ID: string) => {
           providerName: invoice.provider.fullName,
           providerAdresa: invoice.provider.adresa,
           providerTelefon: invoice.provider.telefon,
-          items: invoice.items
-        }
+          items: invoice.items,
+        },
       };
     });
   }
@@ -164,7 +165,7 @@ export const getObjectByID = (id: string): Promise<any> => {
 
   return new Promise((resolve, reject) => {
     getDoc(documentRef)
-      .then((documentSnapshot) => {
+      .then(documentSnapshot => {
         if (documentSnapshot.exists()) {
           const objectData = documentSnapshot.data();
           console.log("Object data is:", objectData);
@@ -175,7 +176,7 @@ export const getObjectByID = (id: string): Promise<any> => {
           resolve(null);
         }
       })
-      .catch((error) => {
+      .catch(error => {
         // Handle any errors that occur during the retrieval process
         console.error("Error fetching object from Firebase:", error);
         reject(error);
@@ -185,7 +186,7 @@ export const getObjectByID = (id: string): Promise<any> => {
 
 // devConsole("Product is loading...");
 
-getallPr().then((data) => {
+getallPr().then(data => {
   productList = data;
   console.log("Done");
 });

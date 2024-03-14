@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-
-import ReactCrop, {
-  centerCrop,
-  makeAspectCrop,
-  Crop,
-  PixelCrop,
-  convertToPixelCrop,
-} from "react-image-crop";
+import parse from "html-react-parser";
+import ReactCrop, { centerCrop, makeAspectCrop, Crop, PixelCrop, convertToPixelCrop } from "react-image-crop";
 import { canvasPreview } from "./canvasPreview";
 import { useDebounceEffect } from "./useDebounceEffect";
 import styles from "./ImageUpload.module.scss";
@@ -15,14 +9,12 @@ import "react-image-crop/dist/ReactCrop.css";
 // import { storage } from 'src/client/firebase';
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../firebase";
+import { ProductListType } from "src/client/utils/OrderInterfaces";
+// ProductListType;
 
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
-function centerAspectCrop(
-  mediaWidth: number,
-  mediaHeight: number,
-  aspect: number
-) {
+function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(
     makeAspectCrop(
       {
@@ -38,7 +30,12 @@ function centerAspectCrop(
   );
 }
 
-export default function ImageUploadtoOrder() {
+interface ProductProps {
+  productID: string;
+  productFeature: ProductListType;
+}
+
+export default function ImageUploadtoOrder({ productFeature, productID }: ProductProps) {
   const [imgSrc, setImgSrc] = useState("");
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -60,9 +57,7 @@ export default function ImageUploadtoOrder() {
     if (e.target.files && e.target.files.length > 0) {
       setCrop(undefined); // Makes crop preview update between images.
       const reader = new FileReader();
-      reader.addEventListener("load", () =>
-        setImgSrc(reader.result?.toString() || "")
-      );
+      reader.addEventListener("load", () => setImgSrc(reader.result?.toString() || ""));
       setIsOpen(true);
       reader.readAsDataURL(e.target.files[0]);
     }
@@ -98,10 +93,7 @@ export default function ImageUploadtoOrder() {
     const scaleX = image.naturalWidth / image.width;
     const scaleY = image.naturalHeight / image.height;
 
-    const offscreen = new OffscreenCanvas(
-      completedCrop.width * scaleX,
-      completedCrop.height * scaleY
-    );
+    const offscreen = new OffscreenCanvas(completedCrop.width * scaleX, completedCrop.height * scaleY);
     const ctx = offscreen.getContext("2d");
     if (!ctx) {
       throw new Error("No 2d context");
@@ -137,20 +129,9 @@ export default function ImageUploadtoOrder() {
 
   useDebounceEffect(
     async () => {
-      if (
-        completedCrop?.width &&
-        completedCrop?.height &&
-        imgRef.current &&
-        previewCanvasRef.current
-      ) {
+      if (completedCrop?.width && completedCrop?.height && imgRef.current && previewCanvasRef.current) {
         // We use canvasPreview as it's much faster than imgPreview.
-        canvasPreview(
-          imgRef.current,
-          previewCanvasRef.current,
-          completedCrop,
-          scale,
-          rotate
-        );
+        canvasPreview(imgRef.current, previewCanvasRef.current, completedCrop, scale, rotate);
       }
     },
     100,
@@ -191,124 +172,114 @@ export default function ImageUploadtoOrder() {
     localStorage.setItem("framedImage", uploadUrl);
   }, [uploadUrl]);
 
+  console.log(productFeature[productID].shortDescription, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+  console.log(productFeature[productID].feature, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
   return (
-    <div className={styles.ImageUploadContainer}>
-      <input type='file' accept='image/*' onChange={onSelectFile} />
+    <>
+      {/* {productFeature != null && <> {productFeature}</>} */}
+      <div className={styles.ImageUploadContainer}>
+        <input type='file' accept='image/*' onChange={onSelectFile} />
 
-      {/* Image Crop Pop-Up */}
+        {/* Image Crop Pop-Up */}
 
-      {isOpen && (
-        <div className={styles.popupOverlay} onClick={() => setIsOpen(false)}>
-          <div
-            className={styles.popupContent}
-            onClick={e => e.stopPropagation()}
-          >
-            <div className={styles.CropControls}>
-              <div>
-                <label htmlFor='scale-input'>Scale: </label>
-                <input
-                  id='scale-input'
-                  type='number'
-                  step='0.1'
-                  value={scale}
-                  disabled={!imgSrc}
-                  onChange={e => setScale(Number(e.target.value))}
-                />
-              </div>
-              <div>
-                <label htmlFor='rotate-input'>Rotate: </label>
-                <input
-                  id='rotate-input'
-                  type='number'
-                  value={rotate}
-                  disabled={!imgSrc}
-                  onChange={e =>
-                    setRotate(
-                      Math.min(180, Math.max(-180, Number(e.target.value)))
-                    )
-                  }
-                />
-              </div>
-              <div>
-                <button onClick={handleToggleAspectClick}>
-                  Toggle aspect {aspect ? "off" : "on"}
-                </button>
-              </div>
-              {!!imgSrc && (
-                <ReactCrop
-                  crop={crop}
-                  onChange={(_, percentCrop) => setCrop(percentCrop)}
-                  onComplete={c => setCompletedCrop(c)}
-                  aspect={aspect}
-                  minWidth={400}
-                  minHeight={100}
-                  // circularCrop
-                >
-                  <img
-                    ref={imgRef}
-                    alt='Crop me'
-                    src={imgSrc}
-                    style={{
-                      transform: `scale(${scale}) rotate(${rotate}deg)`,
-                      maxHeight: "400px",
-                    }}
-                    onLoad={onImageLoad}
+        {isOpen && (
+          <div className={styles.popupOverlay} onClick={() => setIsOpen(false)}>
+            <div className={styles.popupContent} onClick={e => e.stopPropagation()}>
+              <div className={styles.CropControls}>
+                <div>
+                  <label htmlFor='scale-input'>Scale: </label>
+                  <input
+                    id='scale-input'
+                    type='number'
+                    step='0.1'
+                    value={scale}
+                    disabled={!imgSrc}
+                    onChange={e => setScale(Number(e.target.value))}
                   />
-                </ReactCrop>
-              )}
+                </div>
+                <div>
+                  <label htmlFor='rotate-input'>Rotate: </label>
+                  <input
+                    id='rotate-input'
+                    type='number'
+                    value={rotate}
+                    disabled={!imgSrc}
+                    onChange={e => setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))}
+                  />
+                </div>
+                <div>
+                  <button onClick={handleToggleAspectClick}>Toggle aspect {aspect ? "off" : "on"}</button>
+                </div>
+                {!!imgSrc && (
+                  <ReactCrop
+                    crop={crop}
+                    onChange={(_, percentCrop) => setCrop(percentCrop)}
+                    onComplete={c => setCompletedCrop(c)}
+                    aspect={aspect}
+                    minWidth={400}
+                    minHeight={100}
+                    // circularCrop
+                  >
+                    <img
+                      ref={imgRef}
+                      alt='Crop me'
+                      src={imgSrc}
+                      style={{
+                        transform: `scale(${scale}) rotate(${rotate}deg)`,
+                        maxHeight: "400px",
+                      }}
+                      onLoad={onImageLoad}
+                    />
+                  </ReactCrop>
+                )}
+              </div>
+              <button className={styles.popupImageConfirm} onClick={() => setIsOpen(false)}>
+                Confirm
+              </button>
             </div>
-            <button
-              className={styles.popupImageConfirm}
-              onClick={() => setIsOpen(false)}
-            >
-              Confirm
-            </button>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Image Real Component  */}
+        {/* Image Real Component  */}
 
-      {!!completedCrop && (
-        <>
-          <div>
-            <canvas
-              ref={previewCanvasRef}
-              style={{
-                border: "1px solid black",
-                objectFit: "contain",
-                width: completedCrop.width,
-                height: completedCrop.height,
-              }}
-            />
-          </div>
-          <div>
-            <button
-              onClick={onUploadCropClick}
-              className={styles.uploadCroppedImage}
-            >
-              Upload Crop Image
-            </button>
-            <div>{uploadUrl && <>Congrats! Your Image is Submitted</>}</div>
-            <div style={{ fontSize: 12, color: "#666" }}>
-              If you get a security error when downloading try opening the
-              Preview in a new tab (icon near top right).
+        {!!completedCrop && (
+          <>
+            <div>
+              <canvas
+                ref={previewCanvasRef}
+                style={{
+                  border: "1px solid black",
+                  objectFit: "contain",
+                  width: completedCrop.width,
+                  height: completedCrop.height,
+                }}
+              />
             </div>
-            <a
-              href='#hidden'
-              ref={hiddenAnchorRef}
-              download
-              style={{
-                position: "absolute",
-                top: "-200vh",
-                visibility: "hidden",
-              }}
-            >
-              Hidden download
-            </a>
-          </div>
-        </>
-      )}
-    </div>
+            <div>
+              <button onClick={onUploadCropClick} className={styles.uploadCroppedImage}>
+                Upload Crop Image
+              </button>
+              <div>{uploadUrl && <>Congrats! Your Image is Submitted</>}</div>
+              <div style={{ fontSize: 12, color: "#666" }}>
+                If you get a security error when downloading try opening the Preview in a new tab (icon near top right).
+              </div>
+              <a
+                href='#hidden'
+                ref={hiddenAnchorRef}
+                download
+                style={{
+                  position: "absolute",
+                  top: "-200vh",
+                  visibility: "hidden",
+                }}
+              >
+                Hidden download
+              </a>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }
