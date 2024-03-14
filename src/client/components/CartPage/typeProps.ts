@@ -48,6 +48,7 @@ export interface ProductSessionProps {
     reviews: {};
     shortDescription: string;
     title: string;
+    feature: string[];
   };
 }
 export interface ProductCookiesProps {

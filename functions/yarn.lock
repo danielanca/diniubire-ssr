@@ -1995,9 +1995,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"firebase-functions@npm:^4.6.0":
-  version: 4.6.0
-  resolution: "firebase-functions@npm:4.6.0"
+"firebase-functions@npm:^4.8.0":
+  version: 4.8.0
+  resolution: "firebase-functions@npm:4.8.0"
   dependencies:
     "@types/cors": "npm:^2.8.5"
     "@types/express": "npm:4.17.3"
@@ -2009,7 +2009,7 @@ __metadata:
     firebase-admin: ^10.0.0 || ^11.0.0 || ^12.0.0
   bin:
     firebase-functions: lib/bin/firebase-functions.js
-  checksum: 1cbc8b8ea1f1349bc74f810356ab6e84641e3ce6c26ea091a8cad3d6ad570b3e58f2d5872da1dfe5ac03a7c9305b9c16c7a07904996436bd7f2cfbf496aa566e
+  checksum: caef218e0de1bbc6bdbd3d5ddd6fdd91602f4aaf60ab4bd3307a5ec0931bc45a77b36ee8f7c21c279590a4e9cc6873ff8d4e516096f9bd844e382a1164b13af2
   languageName: node
   linkType: hard
 
@@ -2110,7 +2110,7 @@ __metadata:
     eslint-config-google: "npm:^0.14.0"
     eslint-plugin-import: "npm:^2.25.4"
     firebase-admin: "npm:^11.11.0"
-    firebase-functions: "npm:^4.6.0"
+    firebase-functions: "npm:^4.8.0"
     firebase-functions-test: "npm:^0.2.0"
     nodemailer: "npm:^6.7.3"
     typescript: "npm:^4.5.4"

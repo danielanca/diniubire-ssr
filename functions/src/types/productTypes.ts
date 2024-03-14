@@ -9,4 +9,5 @@ export interface ProductModel {
   jsonContent: string;
   imageProduct: [];
   ULbeneficii: [];
+  feature: [];
 }

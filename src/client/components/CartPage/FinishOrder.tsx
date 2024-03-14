@@ -31,6 +31,16 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
   const [results, setResults] = useState<any>([]);
   const easyboxList: EasyBoxListType = [];
 
+  const [framedImg, setFramedImg] = useState<any>(null);
+
+  useEffect(() => {
+    const framedImg = localStorage.getItem("framedImage");
+
+    if (framedImg) {
+      setFramedImg(framedImg);
+    }
+  }, []);
+
   const url = "https://api.smartship.ro/geolocation/easybox";
   const options = {
     method: "GET",
@@ -97,6 +107,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     if (value) {
       setorderData((orderData: any) => ({
         ...orderData,
+        framedImg,
         deliveryMethod: typeof title === "string" ? title : "NOT_SPECIFIED",
       }));
     }
@@ -111,6 +122,7 @@ const FinishOrder = ({ clearNotification }: OrderProps) => {
     const { name, value } = data.target;
     setorderData((orderData: any) => ({
       ...orderData,
+      framedImg,
       [name]: value,
     }));
   };

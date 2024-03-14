@@ -41,6 +41,7 @@ export interface ProductModel {
   reviews: {};
   shortDescription: string;
   title: string;
+  feature: [];
 }
 export interface ProdItemProps {
   productObject: any;
@@ -57,6 +58,7 @@ export interface ProductListType {
     price: string;
     reviews: {};
     ULbeneficii: [];
+    feature: [];
   };
 }
 export interface productObject {
@@ -69,6 +71,7 @@ export interface productObject {
   price: string;
   reviews: {};
   ULbeneficii: [];
+  feature: [];
 }
 
 export interface ProductTypes {
@@ -78,6 +81,7 @@ export interface ProductTypes {
 }
 
 export interface OrderViewProps {
+  framedImg: string;
   lastName?: string;
   firstName?: string;
   phoneNo?: string;
@@ -120,6 +124,7 @@ export interface InvoiceItem {
 
 export interface InvoiceOrderProps {
   invoiceObject: {
+    framedImg: string;
     lastName?: string;
     firstName?: string;
     phoneNo?: string;
@@ -148,5 +153,6 @@ export const authorInitialProduct: ProductModel = {
   jsonContent: "",
   reviews: {},
   shortDescription: "",
-  title: ""
+  title: "",
+  feature: [],
 };

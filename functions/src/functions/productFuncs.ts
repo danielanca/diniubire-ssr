@@ -40,10 +40,11 @@ const createNewProduct = async (modelID: ProductModel) => {
         reviews: {},
         jsonContent: modelID.jsonContent,
         imageProduct: modelID.imageProduct,
-        ULbeneficii: modelID.ULbeneficii
-      }
+        ULbeneficii: modelID.ULbeneficii,
+        feature: modelID.feature,
+      },
     })
-    .then((result) => functions.logger.info("sendReviewToServer response: ", result));
+    .then(result => functions.logger.info("sendReviewToServer response: ", result));
 };
 
 const editExistingProduct = async (modelID: ProductModel) => {
@@ -61,10 +62,11 @@ const editExistingProduct = async (modelID: ProductModel) => {
         firstDescription: modelID.firstDescription,
         jsonContent: modelID.jsonContent,
         imageProduct: modelID.imageProduct,
-        ULbeneficii: modelID.ULbeneficii
-      }
+        ULbeneficii: modelID.ULbeneficii,
+        feature: modelID.feature,
+      },
     })
-    .then((result) => functions.logger.info("sendReviewToServer response: ", result));
+    .then(result => functions.logger.info("sendReviewToServer response: ", result));
 };
 
 const deleteProductByID = async (modelID: string) => {
@@ -74,7 +76,7 @@ const deleteProductByID = async (modelID: string) => {
     .collection("products")
     .doc("activeProds")
     .update({
-      [modelID]: firestore.FieldValue.delete()
+      [modelID]: firestore.FieldValue.delete(),
     })
-    .then((result) => functions.logger.info("sendReviewToServer response: ", result));
+    .then(result => functions.logger.info("sendReviewToServer response: ", result));
 };

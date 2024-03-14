@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import ProductAdded from "../../mini/PopUps/ProductAdded";
 import ProductDescription from "./../ConstantComponents/ProductDescription";
-import { ProductTypes } from '../../../utils/OrderInterfaces';
+import { ProductTypes } from "../../../utils/OrderInterfaces";
 import styles from "./../Product/ProductView.module.scss";
-import images from '../../../data/images';
-import { sendTriggerEmail } from '../../../services/triggers';
-import strings from '../../../data/strings.json';
+import images from "../../../data/images";
+import { sendTriggerEmail } from "../../../services/triggers";
+import strings from "../../../data/strings.json";
 import CountdownTimer from "./Countdown/CountdownTimer";
 import parse from "html-react-parser";
+import ImageUploadtoOrder from "./ImageUploadtoOrder";
+
 const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes) => {
   let { ProductPreview: content } = strings;
   const [mainPicture, setmainPicture] = useState<number>(0);
@@ -31,7 +33,10 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
       addCartHandler();
       setpopProductInCart(true);
     }
-    sendTriggerEmail({ typeEvent: "ADD_TO_CART_EVENT", url: window.location.pathname });
+    sendTriggerEmail({
+      typeEvent: "ADD_TO_CART_EVENT",
+      url: window.location.pathname,
+    });
   };
 
   const animEnded = () => {
@@ -39,6 +44,7 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
   };
   let dateToday = new Date();
   let dateTommorow = dateToday.getDate() + 1;
+
   return (
     <>
       <div className={styles.sectionParent}>
@@ -47,7 +53,7 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
             {productListUpdated != null ? (
               <div className={styles.imageActualContainer}>
                 <img
-                  alt="product for selling"
+                  alt='product for selling'
                   className={styles.imageContainer}
                   src={productListUpdated[ID].imageProduct[mainPicture]}
                 />
@@ -65,7 +71,7 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
                         className={mainPicture === index ? styles.activeImage : styles.clickableImage}
                       >
                         <img
-                          alt="product for selling"
+                          alt='product for selling'
                           className={styles.innerImage}
                           src={productListUpdated[ID].imageProduct[index]}
                         />
@@ -78,17 +84,16 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
             )}
           </div>
         </div>
-
         <div className={styles.rightSection}>
           <div className={styles.rightContainer}>
             <h3 className={styles.productTitle}>{productListUpdated != null ? productListUpdated[ID].title : "..."}</h3>
             <div className={styles.reviewContainer}>
               <div className={styles.starsContainer}>
-                <img alt="stars icons" className={styles.reviewStar} src={images.star} />
-                <img alt="stars icons" className={styles.reviewStar} src={images.star} />
-                <img alt="stars icons" className={styles.reviewStar} src={images.star} />
-                <img alt="stars icons" className={styles.reviewStar} src={images.star} />
-                <img alt="stars icons" className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
+                <img alt='stars icons' className={styles.reviewStar} src={images.star} />
               </div>
               {/* <span className={styles.reviewHead}>
                 {productListUpdated != null
@@ -140,8 +145,22 @@ const ProductPreview = ({ productListUpdated, ID, addCartHandler }: ProductTypes
             {popProductInCart && <ProductAdded animFin={animEnded} id={ID} />}
           </div>
         </div>
-
         {productListUpdated && <ProductDescription productDescription={productListUpdated} productID={ID} />}
+
+        {/* Frame Feature */}
+        {productListUpdated != null && productListUpdated[ID]?.feature.length > 0 ? (
+          <div>
+            {productListUpdated[ID].feature.map((featureItem: string, index: number) => (
+              <div key={index}>
+                {featureItem === "frameFeature" && (
+                  <div className={styles.imageUploadContainer}>
+                    <ImageUploadtoOrder productFeature={productListUpdated} productID={ID} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </>
   );
